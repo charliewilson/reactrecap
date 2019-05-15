@@ -1,25 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+
+import PhotoList from "./components/PhotoList"
+import PhotoPage from "./components/PhotoPage"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router >
+      <Switch>
+        <Route exact path="/photos" component={PhotoList} />
+        <Route exact path="/photos/:photoid" component={PhotoPage} />
+        <Route render={() => (
+          <p>Not found</p>
+        )} />
+      </Switch>
+    </Router>
   );
 }
 
